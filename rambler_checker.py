@@ -4,7 +4,6 @@ import imaplib
 import email
 import json
 import time
-from ctypes import windll
 from urllib3 import disable_warnings
 from loguru import logger
 from sys import stderr
@@ -18,11 +17,12 @@ def clear(): return system('cls')
 
 logger.remove()
 logger.add(stderr, format="<white>{time:HH:mm:ss}</white>"
-                          " | <level>{level: <8}</level>"
+                          " | <green>{level: <8}</green>"
                           " | <cyan>{line}</cyan>"
                           " - <white>{message}</white>")
 
-windll.kernel32.SetConsoleTitleW('Rambler Checker | by cringecode')
+print('Rambler Checker | by cringecode')
+
 
 def get_username():
     with open("ramblers.txt", "r") as file:
@@ -82,6 +82,8 @@ def main():
     except Exception:
         with open(f"Logs\{time_string}.txt", "a", encoding="utf-8") as file:
             file.write(f"{get_username()[count]} не был обработана!")
+    finally:
+        print("Работа успешно выполнена!")
 
 
 if __name__ == "__main__":
